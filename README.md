@@ -1,6 +1,10 @@
 # Batch Remote List JS
 JQuery plugin for remote list batch processing via ajax
 
+Screenshot of generated form and some processed data
+
+![BatchRemoteList example screenshot](/example.png?raw=true)
+
 # Install via npm
 You can install it via npm
 > npm i batch-remote-list-js
