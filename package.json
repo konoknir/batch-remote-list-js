@@ -1,0 +1,22 @@
+{
+  "name": "batch-remote-list-js",
+  "version": "1.0.0",
+  "description": "JQuery plugin for remote list batch processing via ajax",
+  "main": "jquery.batch-remote-list.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/konoknir/batch-remote-list-js.git"
+  },
+  "keywords": [
+    "ecosystem:jquery"
+  ],
+  "author": "Dmitriy Lukin <ldi@email.cz>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/konoknir/batch-remote-list-js/issues"
+  },
+  "homepage": "https://github.com/konoknir/batch-remote-list-js#readme"
+}
