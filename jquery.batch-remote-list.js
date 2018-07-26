@@ -104,8 +104,7 @@
 			ajax_url_count: '/ajax/batch-remote-list/count',
 			ajax_url_item:  '/ajax/batch-remote-list/item',
 			request_throttle: 500,
-			callbacks: {},
-			console_debug: false
+			callbacks: {}
 		},
 		init: function() {
 			// extend config
@@ -298,14 +297,10 @@
 			}
 		},
 		item_process: function(item){ 
-			if(this.config.console_debug){
-				console.log('item_process item: ', item);
-			}
+			console.log('item_process item: ', item);
 		},
 		item_error: function(response){
-			if(this.config.console_debug){
-				console.log('item_error response: ', response);
-			}
+			console.log('item_error response: ', response);
 		}
 	};
 
