@@ -1,6 +1,6 @@
 {
   "name": "batch-remote-list-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JQuery plugin for remote list batch processing via ajax",
   "main": "jquery.batch-remote-list.js",
   "scripts": {
