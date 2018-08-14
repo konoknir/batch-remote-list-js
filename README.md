@@ -131,7 +131,7 @@ messages: {
 	limit_exceeded : 'Limit exceeded',
 	item_not_found : 'Item was not found',
 	data_process_success: 'Items done',
-	data_process_failed: 'Items failed
+	data_process_failed: 'Items failed'
 },
 // backend URLs
 ajax_url_count: '/ajax/batch-remote-list/count',
