@@ -95,11 +95,13 @@
 				error : 'Error',
 				unknown_error : 'Unknown error',
 				data_count_empty : 'Data empty (items were not found)',
-				data_count_total : 'Found items',
+				data_count_total : 'Items total',
 				data_process_left : 'Items left',
 				ajax_fail : 'Remote resource failed',
 				limit_exceeded : 'Limit exceeded',
-				item_not_found : 'Item was not found'
+				item_not_found : 'Item was not found',
+				data_process_success: 'Items done',
+				data_process_failed: 'Items failed'
 			},
 			ajax_url_count: '/ajax/batch-remote-list/count',
 			ajax_url_item:  '/ajax/batch-remote-list/item',
@@ -189,6 +191,8 @@
 
 			var process_counter = 0;
 			var count_left = $("<span>");
+			var count_success = $("<span>");
+			var count_failed = $("<span>");
 			
 			var end_process = function(custom){
 				if(custom){
@@ -244,11 +248,21 @@
 					$('<div>').addClass(inst.config.classes.stats_container).html('').append(
 						'<div>' + inst.getMessage('start_time') + ': ' + inst.curtime() + '</div>',
 						'<div>' + inst.getMessage('data_count_total') + ': ' + count + '</div>',
-						$('<div>' + inst.getMessage('data_process_left') + ': </div>').append(count_left.text(count))
+						$('<div>' + inst.getMessage('data_process_left') + ': </div>').append(count_left.text(count)),
+						$('<div>' + inst.getMessage('data_process_success') + ': </div>').append(count_success.text('0')),
+						$('<div>' + inst.getMessage('data_process_failed') + ': </div>').append(count_failed.text('0'))
 					),
 					inst.buildContainerList()
 				);
 			};
+
+			var count_failed_increase = function(){
+				count_failed.text( + count_failed.text() + 1 );
+			}
+
+			var count_success_increase = function(){
+				count_success.text( + count_success.text() + 1 );
+			}
 			
 			var process_list = function(element_id) {
 
@@ -266,9 +280,12 @@
 
 				$.get(inst.config.ajax_url_item, {id: element_id || 1}, function(data){
 
+
 					if(!data.status){
+						count_failed_increase();
 						container_list.append(inst.item_error(data));
 					} else {
+						count_success_increase();
 						container_list.append(inst.item_process(data.item));
 					}
 
@@ -276,6 +293,7 @@
 						return end_process(inst.getMessage('item_not_found'));
 					}
 
+					// increase process counter
 					process_counter++;
 					count_left.text(count_left.text() - 1);
 					

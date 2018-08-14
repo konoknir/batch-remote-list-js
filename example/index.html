@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Batch Remote List JS example</title>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="../jquery.batch-remote-list.js"></script>
+	<!-- <script src="../i18n/ru.js"></script> -->
+</head>
+<body>
+
+	<p>
+		If you have PHP installed, you can run testing php server from terminal in project root folder:
+		php -S localhost:8000
+	</p>
+
+	<p>		
+		Then open in browser http://localhost:8000/example/index.html
+	</p>
+
+	<p>		
+		You should see this form:
+	</p>
+
+	<div id="batch-process-container"></div>
+
+	<script>
+		$("#batch-process-container").BatchRemoteList({
+			// total_count: 100,		
+			ajax_url_count: 'get_count.php',
+			ajax_url_item: 'get_item.php',
+			callbacks: {
+				item_process: function(item){
+					// we want to use counter only and do not want to append any result
+					return '';
+				},
+				item_error: function(response){
+					// we want to append only errors to the result container list
+					return '<div class="item err">' + 
+						'<div class="name">' + 
+							'#' + response.item.id + ' - ' + response.item.name + 
+						': </div>' +
+						'<span class="item-msg">' + response.message + '</span>' + 
+					'</div>';
+				}
+			}
+		});
+	</script>
+</body>
+</html>

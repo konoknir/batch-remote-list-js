@@ -13,5 +13,7 @@ $.BatchRemoteList.setDefaultMessages({
 	'data_process_left' : 'Осталось обработать',
 	'ajax_fail' : 'Ошибка обработки запроса',
 	'limit_exceeded' : 'Достигнут лимит',
-	'item_not_found' : 'Элемент не найден'
+	'item_not_found' : 'Элемент не найден',
+	'data_process_success': 'Успешно обработано',
+	'data_process_failed': 'Ошибок при обработке'
 });

@@ -3,7 +3,7 @@ JQuery plugin for remote list batch processing via ajax.
 
 Screenshot of generated form and some processed data:
 
-![BatchRemoteList example screenshot](/example.png?raw=true)
+![BatchRemoteList example screenshot](/example/example.png?raw=true)
 
 # Install via npm
 You can install it via npm
@@ -88,7 +88,7 @@ Place container for the form and configure batch process
 					'<div class="name">' + 
 						(response.item ? '#' + response.item.id + ' - ' + response.item.name :  'Unknown item') + 
 					': </div>' +
-					'<span class="item-msg">' + (response.message || 'Unknown error') + '</span>'
+					'<span class="item-msg">' + (response.message || 'Unknown error') + '</span>' + 
 				'</div>';
 			}
 
