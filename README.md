@@ -125,11 +125,13 @@ messages: {
 	error : 'Error',
 	unknown_error : 'Unknown error',
 	data_count_empty : 'Data empty (items were not found)',
-	data_count_total : 'Found items',
+	data_count_total : 'Items total',
 	data_process_left : 'Items left',
 	ajax_fail : 'Remote resource failed',
 	limit_exceeded : 'Limit exceeded',
-	item_not_found : 'Item was not found'
+	item_not_found : 'Item was not found',
+	data_process_success: 'Items done',
+	data_process_failed: 'Items failed
 },
 // backend URLs
 ajax_url_count: '/ajax/batch-remote-list/count',
