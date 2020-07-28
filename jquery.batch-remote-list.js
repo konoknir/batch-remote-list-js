@@ -86,6 +86,7 @@
 			},
 			ajax_url_count: '/ajax/batch-remote-list/count',
 			ajax_url_item:  '/ajax/batch-remote-list/item',
+			ajax_add_data: {},
 			request_throttle: 500,
 			callbacks: {}
 		},
@@ -188,6 +189,19 @@
 				end_process(inst.getMessage('process_stopped'));
 			};
 
+			var get_ajax_data = function(base_data){
+
+				var add_data = typeof inst.config.ajax_add_data === 'function' ? inst.config.ajax_add_data() : inst.config.ajax_add_data;
+
+				if(add_data){
+					for(var i in add_data){
+						base_data[i] = add_data[i];
+					}
+				}
+
+				return base_data;
+			}
+
 			var start_process = function(){
 				// clean result and finish containers
 				container.html('');
@@ -202,8 +216,10 @@
 					return;
 				}
 
+				var ajax_data = get_ajax_data({id: process_id});
+
 				// get total count via ajax
-				$.get(inst.config.ajax_url_count, {id: process_id}, function(data){
+				$.get(inst.config.ajax_url_count, ajax_data, function(data){
 
 					if(!data.status){
 						return end_process(inst.getMessage('error') + "! " + (data.message || inst.getMessage('unknown_error')));
@@ -259,7 +275,9 @@
 					return end_process(inst.getMessage('limit_exceeded') + ' ('+process_limit+')');
 				}
 
-				$.get(inst.config.ajax_url_item, {id: element_id || 1}, function(data){
+				var ajax_data = get_ajax_data({id: element_id || 1});
+
+				$.get(inst.config.ajax_url_item, ajax_data, function(data){
 
 
 					if(!data.status){
@@ -285,7 +303,6 @@
 				}, 'json').fail(function() {
 					end_process(inst.getMessage('ajax_fail') + " (" + inst.config.ajax_url_item + ")");
 				});
-
 			};
 
 			// button action based on status
