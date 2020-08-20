@@ -105,7 +105,7 @@
 		initCallbacks: function(){
 			var t = this;
 
-			var allowed_replacements = ['item_process', 'item_error'];
+			var allowed_replacements = ['item_process', 'item_error', 'finish'];
 			
 			var set_callback = function(callback_name){
 				if(t.config.callbacks[callback_name] && typeof t.config.callbacks[callback_name] === 'function'){
@@ -177,12 +177,16 @@
 			var count_failed = $("<span>");
 			
 			var end_process = function(custom){
+				
 				if(custom){
 					finish_stats_container.append('<div>' + custom + '</div>');
 				}
+				
 				submit_button.data('process-list-status', 'stopped');
 				finish_stats_container.append('<div>'+ inst.getMessage('finish') +': ' + inst.curtime() + '</div>');
 				submit_button.text(inst.getMessage('start_process'));
+
+				inst.finish();
 			};
 
 			var stop_process = function(){
@@ -317,6 +321,9 @@
 		},
 		item_error: function(response){
 			console.log('item_error response: ', response);
+		},
+		finish: function(){
+			console.log('process finished');
 		}
 	};
 
